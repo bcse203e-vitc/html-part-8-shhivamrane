@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f4;
+        }
+
+        .buttons {
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 0 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        #result {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        #computerChoice, #userChoice {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Rock, Paper, Scissors</h1>
+    <p>Choose your move:</p>
+    
+    <div class="buttons">
+        <button onclick="playGame('rock')">Rock</button>
+        <button onclick="playGame('paper')">Paper</button>
+        <button onclick="playGame('scissors')">Scissors</button>
+    </div>
+
+    <div id="userChoice"></div>
+    <div id="computerChoice"></div>
+    <div id="result"></div>
+
+    <script>
+        function getComputerChoice() {
+            const choices = ['rock', 'paper', 'scissors'];
+            const randomIndex = Math.floor(Math.random() * 3);
+            return choices[randomIndex];
+        }
+
+        function playGame(userChoice) {
+            const computerChoice = getComputerChoice();
+
+            document.getElementById('userChoice').textContent = `You chose: ${userChoice}`;
+            document.getElementById('computerChoice').textContent = `Computer chose: ${computerChoice}`;
+
+            let result = '';
+            if (userChoice === computerChoice) {
+                result = 'It\'s a draw!';
+            } else if (
+                (userChoice === 'rock' && computerChoice === 'scissors') ||
+                (userChoice === 'paper' && computerChoice === 'rock') ||
+                (userChoice === 'scissors' && computerChoice === 'paper')
+            ) {
+                result = 'You win!';
+            } else {
+                result = 'You lose!';
+            }
+
+            document.getElementById('result').textContent = result;
+        }
+    </script>
+
+</body>
+</html>

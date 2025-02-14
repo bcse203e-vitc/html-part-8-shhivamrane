@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            font-size: 2rem;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <p>Press any key:</p>
+        <p id="keyDisplay">You pressed: </p>
+    </div>
+
+    <script>
+        document.addEventListener('keydown', function(event) {
+            const key = event.key; 
+            document.getElementById('keyDisplay').textContent = `You pressed: ${key}`;
+        });
+    </script>
+
+</body>
+</html>

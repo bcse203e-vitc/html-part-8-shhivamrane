@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        input[type="password"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-container input {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Password Input</h2>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password">
+
+        <div class="checkbox-container">
+            <input type="checkbox" id="showPassword" onclick="togglePasswordVisibility()">
+            <label for="showPassword">Show Password</label>
+        </div>
+    </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('password');
+            const showPasswordCheckbox = document.getElementById('showPassword');
+
+            if (showPasswordCheckbox.checked) {
+                passwordField.type = 'text'; 
+            } else {
+                passwordField.type = 'password';
+            }
+        }
+    </script>
+
+</body>
+</html>

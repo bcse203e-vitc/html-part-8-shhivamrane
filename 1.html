@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+        button {
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <label for="rows">Number of Rows:</label>
+    <input type="number" id="rows" placeholder="Enter number of rows">
+    <label for="columns">Number of Columns:</label>
+    <input type="number" id="columns" placeholder="Enter number of columns">
+    <button onclick="generateTable()">Generate Table</button>
+
+    <div id="tableContainer"></div>
+
+    <script>
+        function generateTable() {
+            const rows = document.getElementById('rows').value;
+            const columns = document.getElementById('columns').value;
+
+            const tableContainer = document.getElementById('tableContainer');
+            tableContainer.innerHTML = '';
+
+            const table = document.createElement('table');
+
+            for (let i = 0; i < rows; i++) {
+                const row = document.createElement('tr');
+
+                for (let j = 0; j < columns; j++) {
+                    const cell = document.createElement('td');
+                    cell.innerText = `Row ${i+1} - Col ${j+1}`;
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.innerText = 'Delete';
+                    deleteButton.onclick = function() {
+                        cell.remove();
+                    };
+
+                    cell.appendChild(deleteButton);
+                    row.appendChild(cell);
+                }
+
+                table.appendChild(row);
+            }
+
+            tableContainer.appendChild(table);
+            
+            const deleteColumnButton = document.createElement('button');
+            deleteColumnButton.innerText = 'Delete Last Column';
+            deleteColumnButton.onclick = function() {
+                const tableRows = table.getElementsByTagName('tr');
+                for (let i = 0; i < tableRows.length; i++) {
+                    const cells = tableRows[i].getElementsByTagName('td');
+                    if (cells.length > 0) {
+                        cells[cells.length - 1].remove();
+                    }
+                }
+            };
+            tableContainer.appendChild(deleteColumnButton);
+
+            const deleteRowButton = document.createElement('button');
+            deleteRowButton.innerText = 'Delete Last Row';
+            deleteRowButton.onclick = function() {
+                if (table.rows.length > 0) {
+                    table.deleteRow(table.rows.length - 1);
+                }
+            };
+            tableContainer.appendChild(deleteRowButton);
+        }
+    </script>
+</body>
+</html>

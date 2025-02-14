@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .word-count {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Type Something</h2>
+
+        <textarea id="textArea" placeholder="Start typing..." oninput="updateWordCount()"></textarea>
+
+        <div id="wordCount" class="word-count">Word Count: 0</div>
+    </div>
+
+    <script>
+        function updateWordCount() {
+            const textArea = document.getElementById('textArea');
+            const wordCountDisplay = document.getElementById('wordCount');
+            const text = textArea.value.trim();
+
+            const words = text.split(/\s+/).filter(word => word.length > 0);
+
+            wordCountDisplay.textContent = `Word Count: ${words.length}`;
+
+            highlightRepeatedWords(words);
+        }
+
+        function highlightRepeatedWords(words) {
+            const textArea = document.getElementById('textArea');
+            const wordFrequencies = {};
+            const highlightedText = words.map(word => {
+                wordFrequencies[word] = (wordFrequencies[word] || 0) + 1;
+
+                if (wordFrequencies[word] > 1) {
+                    return `<span class="highlight">${word}</span>`;
+                } else {
+                    return word;
+                }
+            }).join(' ');
+
+            const displayDiv = document.createElement('div');
+            displayDiv.innerHTML = highlightedText;
+
+            textArea.value = '';
+
+            textArea.innerHTML = displayDiv.innerHTML;
+        }
+    </script>
+
+</body>
+</html>
