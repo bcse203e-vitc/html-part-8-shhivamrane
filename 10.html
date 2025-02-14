@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Font Size Adjuster</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #text {
+            font-size: 16px; 
+            margin: 20px 0;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <p id="text">Shivam Rane</p>
+    <button id="increaseButton">Increase Font Size</button>
+    <button id="decreaseButton">Decrease Font Size</button>
+
+    <script>
+        const textElement = document.getElementById('text');
+        const increaseButton = document.getElementById('increaseButton');
+        const decreaseButton = document.getElementById('decreaseButton');
+
+        let currentFontSize = 16; 
+
+        increaseButton.addEventListener('click', () => {
+            currentFontSize += 2;
+            textElement.style.fontSize = currentFontSize + 'px';
+        });
+
+        decreaseButton.addEventListener('click', () => {
+            currentFontSize -= 2; 
+            if (currentFontSize < 10) currentFontSize = 10; 
+            textElement.style.fontSize = currentFontSize + 'px';
+        });
+    </script>
+
+</body>
+</html>
